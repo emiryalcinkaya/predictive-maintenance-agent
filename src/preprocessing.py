@@ -7,6 +7,7 @@ def preprocess_data(df):
     Prepare the dataset for machine learning.
     """
 
+    # Select relevant columns
     selected_columns = [
         "Type",
         "Air temperature [K]",
@@ -19,18 +20,18 @@ def preprocess_data(df):
 
     model_data = df[selected_columns].copy()
 
-    # One-Hot Encode machine type
+    # Apply One-Hot Encoding
     model_data = pd.get_dummies(
         model_data,
         columns=["Type"],
         dtype=int
     )
 
-    # Features and target
+    # Split features and target
     X = model_data.drop("Machine failure", axis=1)
     y = model_data["Machine failure"]
 
-    # Split dataset
+    # Split dataset into training and testing sets
     X_train, X_test, y_train, y_test = train_test_split(
         X,
         y,
