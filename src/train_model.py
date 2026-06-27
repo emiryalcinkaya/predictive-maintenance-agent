@@ -18,9 +18,7 @@ def main():
     # Prepare dataset
     X_train, X_test, y_train, y_test = preprocess_data(df)
 
-    # -----------------------------
     # Decision Tree
-    # -----------------------------
     decision_tree = DecisionTreeClassifier(random_state=42)
     decision_tree.fit(X_train, y_train)
 
@@ -33,11 +31,11 @@ def main():
         y_test
     )
 
-    # -----------------------------
     # Random Forest
-    # -----------------------------
     random_forest = RandomForestClassifier(
-        n_estimators=100,
+        n_estimators=200,
+        max_depth=10,
+        class_weight="balanced",
         random_state=42
     )
 
