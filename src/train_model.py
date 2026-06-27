@@ -4,6 +4,8 @@ from sklearn.ensemble import RandomForestClassifier
 from analysis import analyze_dataset
 from data_loader import load_data
 from evaluate_model import evaluate_model
+from feature_importance import plot_feature_importance
+from model_utils import save_model
 from preprocessing import preprocess_data
 
 
@@ -22,8 +24,20 @@ def main():
     decision_tree = DecisionTreeClassifier(random_state=42)
     decision_tree.fit(X_train, y_train)
 
+    save_model(
+        decision_tree,
+        "decision_tree.joblib"
+    )
+
     print("\n=== Decision Tree Model ===")
     print("Decision Tree model trained successfully.")
+
+    print("\nGenerating Feature Importance...")
+
+    plot_feature_importance(
+        decision_tree,
+        X_train.columns
+    )
 
     evaluate_model(
         decision_tree,
@@ -40,6 +54,11 @@ def main():
     )
 
     random_forest.fit(X_train, y_train)
+
+    save_model(
+        random_forest,
+        "random_forest.joblib"
+    )
 
     print("\n=== Random Forest Model ===")
     print("Random Forest model trained successfully.")
