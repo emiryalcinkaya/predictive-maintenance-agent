@@ -9,7 +9,7 @@ def main():
     print("=== Predictive Maintenance Agent ===\n")
 
     # Load trained model
-    model = load_model("random_forest.joblib")
+    model = load_model("decision_tree.joblib")
 
     # Get machine information from the user
     machine_type = input("Machine Type (L/M/H): ").upper()
